@@ -1,0 +1,101 @@
+.footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 50px 40px;
+      background-color: #0A0A09;
+      color: var(--base-color);
+    }
+
+    .footer-section {
+      flex: 1 1 250px;
+      margin: 15px;
+    }
+
+    .footer-section h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-family: 'Barlow-Bold';
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      
+    }
+
+    .footer-section li {
+      margin-bottom: 20px;
+      transition: color 0.6s;
+
+
+    }
+
+   .footer-item {
+        display: inline-block;
+        position: relative;
+        padding-bottom: 2px;
+        transition: border 0.8s ease-in-out;
+    }
+
+    .footer-item:hover {
+        border-bottom: 1px solid #F5F5F5;
+        cursor: pointer;
+    }
+
+
+    .footer .certified {
+      /* text-align: center; */
+    }
+
+    .footer .certified img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    .footer .social-icons a {
+      color: #fff;
+      margin-right: 10px;
+      font-size: 1.3rem;
+      transition: color 0.3s;
+    }
+
+    .footer .social-icons a:hover {
+      border: 1px solid #F5F5F5;
+    }
+
+    .footer .contact li i {
+      margin-right: 10px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      background-color: #0A0A09;
+      color: var(--base-color);
+      
+    }
+    .footer-bottom a{
+        font-weight: 400;
+        font-family: 'Barlow-Light';
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 13px;
+    }
+    .chat-footer{
+        background-color: #D9D9D9;
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+        position: fixed;
+        bottom: 20px;
+        right: 50px;
+        display: flex;  
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;  
+        padding: 5px;
+        z-index: 1000;
+    }

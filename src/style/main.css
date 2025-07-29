@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+@import "./header.css";
+@import "./hero-section.css";
+@import "./fonts.css";
+@import "./footer.css";
+@import "./variables.css";
+@import "./header-dropdown/coffee-subscription.css";
+@import "./header-dropdown/search-overlay.css";
+@import "./header-dropdown/cart.css";
+@import "./carousel.css";
+@import "./newProduct.css";
+@import "./shopCoffee.css";
+@import "./verticalScroll.css";
+body{
+    /* max-width: 1440px; */
+     font-family: 'Barlow-Light', sans-serif; 
+    
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+svg {
+  fill: #fff;
+  /* stroke: #fff; */
+}
+html, body {
+  height: 100%;
+
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    position: relative;
+    
+}

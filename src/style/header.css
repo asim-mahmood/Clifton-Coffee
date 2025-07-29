@@ -1,0 +1,107 @@
+
+.nav-container {
+  margin: 0 3rem;
+  padding: 2rem 0 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+.site-header {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: background 0.6s ease-in-out;
+}
+.site-header:hover {
+  background: #EAEBE4;
+  
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+/* Nav lists */
+.nav-left ul,
+.nav-right ul
+ {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-right-actions ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-left a,
+.nav-right a,
+.nav-right-actions a {
+  text-decoration: none;
+  color: var(--base-color);
+  font-family: 'Barlow-Bold';
+  font-size: 16px;
+  position: relative;
+  transition: color 0.6s ease-in-out;
+}
+
+
+.site-header:hover .nav-left a,
+.site-header:hover .nav-right a,
+.site-header:hover .nav-right-actions a {
+  color: black !important; /* Force black on hover */
+}
+
+.site-header:hover .nav-right-actions a svg path {
+  fill: black !important;
+}
+/* Logo */
+.logo img {
+  height: 60px;
+}
+.logo img {
+  transition: filter 0.6s ease;
+}
+
+.site-header:hover .logo img {
+  filter: brightness(0.1); /* Makes it darker */
+}
+
+.has-dropdown .dropdown {
+  position: fixed;      
+  top: calc(70px + 0.5rem);
+  left: 0;
+  background-color: #EAEBE4;
+  padding: 0.5rem 0;
+  display: none;
+  flex-direction: column;
+  width: 100vw;
+  border-radius: 0;
+}
+.has-dropdown:hover .dropdown {
+  display: flex;
+}
+.has-dropdown .dropdown li {
+  margin: 0;
+}
+
+
+
+.fa-angle-down {
+  padding-left: 0.5rem;
+  padding-top: 0.2rem;
+}
+
+/* Responsive: collapse to burger at <768px */
+@media (max-width: 767px) {
+  .nav-left, .nav-right {
+    display: none;
+  }
+  /* You can add a burger icon here and toggle a mobile nav */
+}

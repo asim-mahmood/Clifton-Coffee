@@ -1,0 +1,54 @@
+#searchOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(2px);
+      display: none;        /* hidden by default */
+      z-index: 9999;
+    }
+    #searchOverlay.active {
+      display: block;
+    }
+
+    /* 3) Close button */
+    #searchOverlay .close-btn {
+      position: absolute;
+      top: 2rem; 
+      right: 7rem;
+      font-size: 4rem;
+      color: white;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* 4) Centered search box */
+    #searchOverlay .overlay-content {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 1000px;
+      text-align: left;
+      color: white;
+    }
+    #searchOverlay .overlay-content h2 {
+      margin: 0 0 1rem;
+      font-size: 2rem;
+    }
+    #searchOverlay .overlay-content input {
+      width: 100%;
+      padding: 1rem 0;
+      background: none;
+      border: none;
+      border-bottom: 1px solid #ffffff;
+      color: white;
+         width: 100%;
+      outline: none;
+      font-family: 'inter-semi-bold', sans-serif;
+      font-weight: 600;
+      font-size: 32px;
+    }
+    #searchOverlay .overlay-content input::placeholder {
+      color: #ffffff;
+    }

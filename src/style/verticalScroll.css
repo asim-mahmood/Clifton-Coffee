@@ -1,0 +1,157 @@
+ .croursal-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 30px;
+     padding: 3rem 7rem 3rem 3rem;
+    margin: 0 auto;
+    position: relative;
+    
+ }
+
+ /* Text carousel container */
+ .textCarousel-wrapper {
+     position: relative;
+     height: 500px;
+     overflow-y: auto;
+     scroll-snap-type: y mandatory;
+     padding: 30px 60px 30px 30px;
+     background: #fff;
+     border-radius: 12px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+     -ms-overflow-style: none;
+     scrollbar-width: none;
+ }
+
+ .textCarousel-wrapper::-webkit-scrollbar {
+     display: none;
+ }
+
+ .textCarousel-item {
+     scroll-snap-align: start;
+     padding-bottom: 30px;
+     border-bottom: 1px solid #e0e0e0;
+     margin-bottom: 30px;
+     transition: transform 0.3s;
+ }
+
+ .textCarousel-item.active {
+     transform: translateX(5px);
+ }
+
+ .textCarousel-item h3 {
+     font-size: 1.8rem;
+     color: #2c3e50;
+     margin-bottom: 8px;
+ }
+
+ .textCarousel-item h4 {
+     font-size: 1rem;
+     color: #ff6b6b;
+     letter-spacing: 1px;
+     margin-bottom: 12px;
+     text-transform: uppercase;
+ }
+
+ .textCarousel-item p {
+     line-height: 1.6;
+     color: #555;
+     margin-bottom: 16px;
+ }
+
+ .read-more {
+     display: inline-block;
+     margin-top: 12px;
+     padding: 8px 16px;
+     background: #ff6b6b;
+     color: #fff;
+     border-radius: 20px;
+     text-decoration: none;
+     font-weight: 600;
+     transition: background 0.3s;
+ }
+
+ .read-more:hover {
+     background: #e85d5d;
+ }
+
+ /* Gradient hints */
+ .textCarousel-wrapper::before,
+ .textCarousel-wrapper::after {
+     content: '';
+     position: sticky;
+     left: 0;
+     right: 0;
+     height: 40px;
+     pointer-events: none;
+ }
+
+ .textCarousel-wrapper::before {
+     top: 0;
+     background: linear-gradient(to bottom, #fff, transparent);
+ }
+
+ .textCarousel-wrapper::after {
+     bottom: 0;
+     background: linear-gradient(to top, #fff, transparent);
+ }
+
+ /* Centered indicators */
+ .indicators {
+     position: absolute;
+     top: 50%;
+     right: 3.5%;
+     transform: translateY(-50%);
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+ }
+
+ .indicator-dot {
+     width: 15px;
+     height: 15px;
+     border-radius: 50%;
+     background: transparent;
+     border: 2px solid #000;
+     cursor: pointer;
+     transition: background 0.3s;
+ }
+
+ .indicator-dot.active {
+     background: #000;
+ }
+
+ /* Image display container */
+ .image-display {
+     position: relative;
+     height: 500px;
+     background: #fff;
+     border-radius: 12px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+     overflow: hidden;
+ }
+
+ .display-img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: none;
+ }
+
+ .display-img.active {
+     display: block;
+ }
+
+ .img-title {
+     position: absolute;
+     bottom: 20px;
+     left: 20px;
+     background: rgba(0, 0, 0, 0.6);
+     color: #fff;
+     padding: 8px 16px;
+     border-radius: 8px;
+     font-size: 1.2rem;
+     font-weight: 600;
+ }

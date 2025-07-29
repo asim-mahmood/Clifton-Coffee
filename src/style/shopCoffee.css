@@ -1,0 +1,65 @@
+.coffee-hero {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    /* adjust height as needed */
+    min-height: 350px;
+    background: url('/public/images/texas-joe-coffee_1440.jpeg') center/cover no-repeat;
+    color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Semi‑transparent overlay for better text readability */
+.coffee-hero__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.486);
+}
+
+/* Text wrapper */
+.coffee-hero__content {
+    position: relative;
+    max-width: 100%;
+    padding: 0 3rem;
+
+}
+
+.coffee-hero__subtitle {
+    font: 400 17px 'Brelow-Regular', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5em;
+    color: #FFFFFF;
+    line-height: 25px;
+}
+
+.coffee-hero__title {
+    font: 400 70px 'Brelow-Regular', sans-serif;
+    margin: 0 0 0.5em;
+    line-height: 57px;
+    color: #F5F5F5;
+}
+
+.coffee-hero__text {
+    font: 400 20px 'Brelow-Regular', sans-serif;
+    margin: 0 0 0.5em;
+    line-height: 25px;
+    color: #F5F5F5;
+    width: 70%;
+}
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+    .coffee-hero__title {
+        font-size: 2.2rem;
+    }
+
+    .coffee-hero__text {
+        font-size: 1rem;
+    }
+}

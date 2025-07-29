@@ -1,0 +1,329 @@
+.new-products {
+    padding: 3rem;
+    text-align: center;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.5rem;
+    width: 100%;
+}
+
+.hero-text {
+    margin-bottom: 3rem;
+}
+
+.hero-text h4 {
+    font: 400 70px 'Barlow-Regular', sans-serif;
+    color: #000;
+}
+
+.hero-text p {
+    font: 400 17px 'Barlow-Regular', sans-serif;
+    color: #0A0A09;
+}
+
+.tabs-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 1rem auto;
+}
+
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 0.2rem 1.5rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    font: 600 13px 'Barlow-Semibold', sans-serif;
+    transition: color 0.5s;
+    border: 2px solid #0A0A09;
+    color: #0A0A09;
+    border-radius: 30px;
+}
+
+.tab-button.active {
+    background-color: #0A0A09;
+    border: 2px solid #0A0A09;
+    color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.mini-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.card {
+    position: relative;
+    flex: 0 0 calc(50% - 10px);
+    margin: 0 5px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.buy-now {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.card:hover .buy-now {
+    opacity: 1;
+}
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+.prev {
+    left: 5px;
+}
+.next {
+    right: 5px;
+}
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0rem;
+}
+.image-card {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    width: 100%;
+}
+.image-card img {
+  display: block;        /* remove inline whitespace */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* crop & scale to completely fill */
+  object-position: center center;
+}
+.image-card:nth-child(1) {
+    border-radius: 12px 0 0 0;
+}
+
+.image-card:nth-child(2) {
+    border-radius: 0 12px 0 0;
+}
+
+.image-card:nth-child(3) {
+    border-radius: 0 0 0 12px;
+}
+
+.image-card:nth-child(4) {
+    border-radius: 0 0 12px 0;
+}
+
+.image-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.image-card:hover .overlay {
+    opacity: 1;
+}
+
+.overlay span {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.single-view-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 658px;
+}
+
+.svc-window {
+    overflow: hidden;
+}
+
+.svc-track {
+    display: flex;
+    gap: 18px;
+    transition: transform 0.4s ease;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.svc-slide {
+    flex: 0 0 calc((100% - (2 * -2px)) / 3);
+    box-sizing: border-box;
+}
+
+
+.single-view-carousel {
+    position: relative;
+    overflow: visible;
+
+}
+
+.svc-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: black;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+
+    line-height: 2;
+}
+
+.svc-prev {
+    left: -20px;
+}
+
+.svc-next {
+    right: -20px;
+}
+
+.coffee-panel {
+    width: 320px;
+    background-color: #e0e5e3;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+}
+
+.coffee-panel__image-container {
+    position: relative;
+    height: 220px;
+    /* shows half of a 320px-high image */
+    overflow: hidden;
+    background-color: #D6DBDA;
+    /* backdrop behind the image */
+}
+
+.coffee-panel__image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    /* height: 234px;           */
+    transform: translate(-50%, -50%);
+}
+
+.coffee-panel__details {
+    padding: 20px;
+}
+
+.coffee-panel__title {
+    font: 400 25px 'Barlow-Regular', sans-serif;
+    margin: 0 0 10px;
+    color: #0A0A09;
+}
+
+.coffee-panel__description {
+    font: 400 12px 'Barlow-Regular', sans-serif;
+    margin: 0 0 14px;
+    line-height: 1.4;
+    color: #0A0A09;
+}
+
+.coffee-panel__price {
+    font: 400 15px 'Barlow-Regular', sans-serif;
+    color: #0A0A09;
+}
+
+/* Base: hide the button */
+.coffee-panel__view-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 0.6em;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    /* hidden initially */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.5s ease;
+    pointer-events: none;
+    /* not clickable while hidden */
+}
+
+/* On hover of the panel, show it */
+.coffee-panel:hover .coffee-panel__view-btn {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    /* now clickable */
+}

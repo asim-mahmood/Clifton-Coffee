@@ -1,0 +1,69 @@
+/* 1. Container holds everything */
+.video‑hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;       /* or whatever height you need */
+  display: flex;
+  align-items: center; /* center content vertically */
+  justify-content: center; /* center content horizontally */
+}
+
+/* 2. Video sits absolutely and covers the container */
+.video‑hero__media {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  object-fit: cover;
+}
+
+/* 3. Dark overlay over the video */
+.video‑hero__overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* adjust alpha as needed */
+  z-index: 2;
+}
+
+/* 4. Your real content on top */
+.video‑hero__content {
+  position: relative;
+  z-index: 3;
+  color: #fff;        /* text color */
+  padding: 2rem;
+  text-align: center;
+}
+.video‑hero h1{
+    font-size: 91px; 
+    margin-bottom: 4.5rem;
+    margin-top: 5.5rem;
+    font-family: 'Barlow-Light', sans-serif; 
+    font-weight: 500;
+    color: var(--base-color);
+}
+.video‑hero .btn-shop-now {
+  background-color: transparent; 
+  color: var(--base-color);
+  border: 1px solid #F5F5F5;  
+  padding: 0.8rem 3.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 35px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Barlow-Light';
+  transition: background-color 0.8s ease-in-out, color 0.8s ease-in-out, border-color 0.8s ease-in-out;
+}
+.video‑hero .btn-shop-now:hover {
+  background-color: black;
+  color: var(--base-color);
+  border-color: #4d4d4d; /* remove border on hover */
+
+}

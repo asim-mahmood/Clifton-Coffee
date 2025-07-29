@@ -1,0 +1,87 @@
+ 
+
+    /* Overlay (darkens rest of page) */
+    #cartOverlay {
+      position: fixed;
+      top: 0; right: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease;
+      z-index: 100;
+    }
+    #cartOverlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+
+    #cartSidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 520px;
+      max-width: 80%;
+      height: 100%;
+      background: #fafafa;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      transform: translateX(100%);
+      transition: transform .3s ease;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+    }
+    #cartSidebar.active {
+      transform: translateX(0);
+    }
+
+    /*  header */
+    #cartSidebar .header {
+      padding: 1rem 2rem;
+      font-size: 22px;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Barlow-Bold', sans-serif;
+      align-items: center;
+      font-weight: 700;
+      color: #000;
+    }
+
+    #cartSidebar .header .close-btn {
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* content */
+    #cartSidebar .content {
+      padding: 2rem;
+      flex: 1;
+      overflow-y: auto;
+    }
+    #cartSidebar .content p {
+      margin-bottom: 1rem;
+      font: 500 18px 'Barlow-Medium', sans-serif;
+
+
+      color: #000000;
+    }
+
+    #cartSidebar .content button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      background: #000;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      border-radius: 30px;
+      color: #F5F5F5;
+      margin-top: 2rem;
+       font: 500 16px 'Barlow-Medium', sans-serif;
+    }
