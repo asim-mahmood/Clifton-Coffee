@@ -86,6 +86,6 @@
 .image-carousel-dots button.active {
   background: #000;
 }
-.fa-instagram{
+.image-container .fa-instagram{
     font-size: 3rem;
 }

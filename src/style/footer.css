@@ -39,7 +39,8 @@
     }
 
     .footer-item:hover {
-        border-bottom: 1px solid #F5F5F5;
+        text-decoration: underline;
+    text-underline-offset: 0.5rem;
         cursor: pointer;
     }
 
@@ -60,9 +61,6 @@
       transition: color 0.3s;
     }
 
-    .footer .social-icons a:hover {
-      border: 1px solid #F5F5F5;
-    }
 
     .footer .contact li i {
       margin-right: 10px;
