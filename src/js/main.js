@@ -47,75 +47,7 @@ cartOverlay.addEventListener('click', closeCart);
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeCart();
 });
-// document.addEventListener('DOMContentLoaded', () => {
-//   const track = document.querySelector('.carousel-track');
-//   const originalSlides = Array.from(track.children);
-//   const slidesPerView = 3;
-//   let currentIndex = slidesPerView;
 
-//   // Clone slides
-//   const startClones = originalSlides.slice(0, slidesPerView).map(s => s.cloneNode(true));
-//   const endClones = originalSlides.slice(-slidesPerView).map(s => s.cloneNode(true));
-//   endClones.reverse().forEach(clone => track.insertBefore(clone, track.firstChild));
-//   startClones.forEach(clone => track.appendChild(clone));
-//   const allSlides = Array.from(track.children);
-
-//   // Compute slideWidth including gap
-//   function getSlideWidth() {
-//     const slide = track.querySelector('.carousel-slide');
-//     const style = window.getComputedStyle(track);
-//     const gap = parseFloat(style.gap) || 0;
-//     return slide.getBoundingClientRect().width + gap;
-//   }
-//   let slideWidth = getSlideWidth();
-
-//   // Initial position at first real slide
-//   track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
-
-//   // Dots for each original slide
-//   const dotsNav = document.querySelector('.carousel-dots');
-//   originalSlides.forEach((_, i) => {
-//     const dot = document.createElement('span');
-//     dot.className = 'carousel-dot';
-//     if (i === 0) dot.classList.add('active');
-//     dot.addEventListener('click', () => moveTo(i + slidesPerView));
-//     dotsNav.appendChild(dot);
-//   });
-//   const dots = Array.from(dotsNav.children);
-
-//   // Button handlers
-//   document.querySelector('.carousel-button.right').addEventListener('click', () => moveTo(currentIndex + 1));
-//   document.querySelector('.carousel-button.left').addEventListener('click', () => moveTo(currentIndex - 1));
-
-//   // On resize, recalc width and reposition
-//   window.addEventListener('resize', () => {
-//     slideWidth = getSlideWidth();
-//     track.style.transition = 'none';
-//     track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
-//   });
-
-//   // Looping logic
-//   track.addEventListener('transitionend', () => {
-//     const total = allSlides.length;
-//     if (currentIndex >= total - slidesPerView) currentIndex = slidesPerView;
-//     if (currentIndex < slidesPerView) currentIndex = total - slidesPerView * 2;
-//     track.style.transition = 'none';
-//     track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
-//     updateDots();
-//   });
-
-//   function moveTo(index) {
-//     currentIndex = index;
-//     track.style.transition = 'transform 0.5s ease-in-out';
-//     track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
-//   }
-
-//   function updateDots() {
-//     const realIndex = (currentIndex - slidesPerView + originalSlides.length) % originalSlides.length;
-//     dots.forEach(d => d.classList.remove('active'));
-//     dots[realIndex].classList.add('active');
-//   }
-// });
 
 //New Product Section
 
@@ -238,131 +170,151 @@ tabButtons.forEach(btn => {
 });
 
 // new product carousel
-(function () {
-  const carousel = document.querySelector('.single-view-carousel');
-  const track = carousel.querySelector('.svc-track');
-  const slides = Array.from(track.children);
-  const prevBtn = carousel.querySelector('.svc-prev');
-  const nextBtn = carousel.querySelector('.svc-next');
-  const visible = 3;                // # of slides visible
-  const gap = parseFloat(getComputedStyle(track).gap) || 0;
-  let slideWidth;
-  let index;
 
-  // 1) clone slides
-  const prependClones = slides.slice(-visible).map(slide => slide.cloneNode(true));
-  const appendClones = slides.slice(0, visible).map(slide => slide.cloneNode(true));
-  prependClones.forEach(clone => track.insertBefore(clone, track.firstChild));
-  appendClones.forEach(clone => track.appendChild(clone));
 
-  // 2) recalc full list
-  const allSlides = Array.from(track.children);
-  index = visible;  // start at the “real” first slide
+document.addEventListener('DOMContentLoaded', () => {
+  // Map each carousel element → its control object
+  const carouselInstances = new Map();
 
-  function calcSlideWidth() {
-    // width of one slide + gap
-    slideWidth = carousel.offsetWidth / visible + gap;
+  // 1) Initialization function for a single carousel
+  function initSingleViewCarousel(carousel) {
+    const track   = carousel.querySelector('.svc-track');
+    const slides  = Array.from(track.children);
+    const prevBtn = carousel.querySelector('.svc-prev');
+    const nextBtn = carousel.querySelector('.svc-next');
+    const visible = 3;  // how many slides should show at once
+    const gap     = parseFloat(getComputedStyle(track).gap) || 0;
+
+    let allSlides, slideWidth, index;
+
+    // --- clone start & end slides for infinite loop ---
+    function cloneSlides() {
+      // remove any previous clones
+      track.querySelectorAll('.clone').forEach(c => c.remove());
+
+      const real = Array.from(track.children);
+      const prepend = real.slice(-visible).map(s => {
+        const c = s.cloneNode(true);
+        c.classList.add('clone');
+        return c;
+      });
+      const append  = real.slice(0, visible).map(s => {
+        const c = s.cloneNode(true);
+        c.classList.add('clone');
+        return c;
+      });
+
+      prepend.forEach(c => track.insertBefore(c, track.firstChild));
+      append.forEach(c => track.appendChild(c));
+
+      allSlides = Array.from(track.children);
+      index = visible;
+    }
+
+    // --- measure slide width + update transform ---
+    function calcSlideWidth() {
+      // use the *first real* slide for width
+      const firstReal = track.querySelector('.clone') 
+        ? track.querySelectorAll('.svc-slide:not(.clone)')[0] 
+        : slides[0];
+      slideWidth = firstReal.offsetWidth + gap;
+    }
+    function update(animate = true) {
+      track.style.transition = animate ? 'transform 0.4s ease' : 'none';
+      track.style.transform  = `translateX(${-index * slideWidth}px)`;
+    }
+
+    // --- wraparound logic on transition end ---
+    function wrapIfNeeded() {
+      const handler = () => {
+        track.removeEventListener('transitionend', handler);
+        if (index >= allSlides.length - visible) {
+          // moved past real end → jump to real start
+          index = visible;
+          update(false);
+        } else if (index < visible) {
+          // moved before real start → jump to real end
+          index = allSlides.length - visible * 2;
+          update(false);
+        }
+      };
+      track.addEventListener('transitionend', handler);
+    }
+
+    // --- button handlers ---
+    prevBtn.addEventListener('click', () => {
+      index--;
+      update();
+      wrapIfNeeded();
+    });
+    nextBtn.addEventListener('click', () => {
+      index++;
+      update();
+      wrapIfNeeded();
+    });
+
+    // --- public API for this instance ---
+    function recalcAndUpdate() {
+      cloneSlides();
+      calcSlideWidth();
+      update(false);
+    }
+
+    // --- handle window resize ---
+    window.addEventListener('resize', recalcAndUpdate);
+
+    // --- first setup & return control object ---
+    recalcAndUpdate();
+    return { recalcAndUpdate };
   }
 
-  function update(animate = true) {
-    track.style.transition = animate ? 'transform 0.4s ease' : 'none';
-    track.style.transform = `translateX(${-index * slideWidth}px)`;
-  }
+  // initialize every carousel on the page
+  document.querySelectorAll('.single-view-carousel').forEach(carousel => {
+    carouselInstances.set(
+      carousel,
+      initSingleViewCarousel(carousel)
+    );
+  });
 
-  function wrapIfNeeded() {
-    // after sliding, jump without animation if we're in cloned area
-    track.addEventListener('transitionend', function handler() {
-      track.removeEventListener('transitionend', handler);
-      if (index >= allSlides.length - visible) {
-        // jumped past end → reset to real first
-        index = visible;
-        update(false);
-      } else if (index < visible) {
-        // jumped past beginning → reset to real last
-        index = allSlides.length - visible * 2;
-        update(false);
+  // 2) Tab switching logic
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // deactivate all buttons & contents
+      tabButtons.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+
+      // activate this button + its target content
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add('active');
+
+      // recalc the carousel inside the newly active tab
+      const carousel = target.querySelector('.single-view-carousel');
+      if (carousel && carouselInstances.has(carousel)) {
+        carouselInstances.get(carousel).recalcAndUpdate();
       }
     });
+  });
+
+  // 3) On load, ensure the carousel in the already‑active tab is correct
+  const activeTab = document.querySelector('.tab-content.active');
+  if (activeTab) {
+    const carousel = activeTab.querySelector('.single-view-carousel');
+    if (carousel && carouselInstances.has(carousel)) {
+      carouselInstances.get(carousel).recalcAndUpdate();
+    }
   }
-
-  prevBtn.addEventListener('click', () => {
-    index--;
-    update();
-    wrapIfNeeded();
-  });
-
-  nextBtn.addEventListener('click', () => {
-    index++;
-    update();
-    wrapIfNeeded();
-  });
-
-  window.addEventListener('resize', () => {
-    calcSlideWidth();
-    update(false);
-  });
-
-  // init
-  calcSlideWidth();
-  update(false);
-})();
-
-
-
-
-
-
+});
 
 
 
 
 //text scroll section 
 
-// (function () {
-//   const items = document.querySelectorAll('.textCarousel-item');
-//   const dots = document.querySelectorAll('.indicator-dot');
-//   const imgs = document.querySelectorAll('.display-img');
-//   const titleEl = document.querySelector('.img-title');
-//   const wrapper = document.getElementById('textCarousel');
-//   let active = 0;
-//   const titles = ['Clifton Capsules', 'Clifton Tea', 'Clifton Chai', 'Clifton Hot Chocolate', 'Clifton Coffee'];
 
-//   function setActive(index) {
-//     items[active].classList.remove('active');
-//     dots[active].classList.remove('active');
-//     imgs[active].classList.remove('active');
-//     active = index;
-//     items[active].classList.add('active');
-//     dots[active].classList.add('active');
-//     imgs[active].classList.add('active');
-//     // titleEl.textContent = titles[active];
-//   }
-
-//   items.forEach((item, i) => item.addEventListener('click', () => setActive(i)));
-//   dots.forEach((dot, i) => dot.addEventListener('click', () => setActive(i)));
-//   // wrapper.addEventListener('scroll', () => {
-//   //   const idx = Array.from(items).findIndex(item => item.getBoundingClientRect().top >= wrapper.getBoundingClientRect().top - 10);
-//   //   if (idx !== -1 && idx !== active) setActive(idx);
-//   // });
-//   wrapper.addEventListener('scroll', () => {
-//   const wrapperTop = wrapper.getBoundingClientRect().top;
-//   let closestIndex = 0;
-//   let minDiff = Infinity;
-
-//   items.forEach((item, i) => {
-//     const diff = Math.abs(item.getBoundingClientRect().top - wrapperTop);
-//     if (diff < minDiff) {
-//       minDiff = diff;
-//       closestIndex = i;
-//     }
-//   });
-
-//   if (closestIndex !== active) setActive(closestIndex);
-// });
-
-//   // Initialize
-//   setActive(0);
-// })();
 (function () {
   const items = document.querySelectorAll('.textCarousel-item');
   const dots  = document.querySelectorAll('.indicator-dot');
@@ -416,3 +368,6 @@ tabButtons.forEach(btn => {
   // kick things off
   setActive(0);
 })();
+
+
+//newproducta

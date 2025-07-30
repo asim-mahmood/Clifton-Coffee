@@ -87,6 +87,7 @@
     width: 100%;
     height: auto;
 }
+
 .buy-now {
     position: absolute;
     bottom: 10px;
@@ -100,9 +101,11 @@
     opacity: 0;
     transition: opacity 0.3s;
 }
+
 .card:hover .buy-now {
     opacity: 1;
 }
+
 .btn {
     position: absolute;
     top: 50%;
@@ -117,30 +120,36 @@
     cursor: pointer;
     z-index: 1;
 }
+
 .prev {
     left: 5px;
 }
+
 .next {
     right: 5px;
 }
+
 .image-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0rem;
 }
+
 .image-card {
     position: relative;
     overflow: hidden;
     height: 250px;
     width: 100%;
 }
+
 .image-card img {
-  display: block;        /* remove inline whitespace */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* crop & scale to completely fill */
-  object-position: center center;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
 }
+
 .image-card:nth-child(1) {
     border-radius: 12px 0 0 0;
 }
@@ -191,30 +200,35 @@
     font-size: 1rem;
     font-weight: 500;
 }
+
 .single-view-carousel {
     position: relative;
     overflow: hidden;
-    width: 661px;
+     width: calc(2 * 315px + 1 * 10px);
 }
 
 .svc-window {
-    overflow: hidden;
+    position: relative;
+  overflow: hidden;
 }
 
 .svc-track {
-    display: flex;
-    gap: 3px;
-    transition: transform 0.4s ease;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+    display: grid;
+  grid-auto-flow: column;       /* place items left→right */
+  grid-auto-columns: 315px;     /* each “column” is exactly 315px wide */
+  grid-auto-rows: 1fr;          /* every row is as tall as the tallest card */
+  gap: 10px;                    /* whatever horizontal gap you like */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transition: transform 0.4s ease;
 }
 
 .svc-slide {
     flex: 0 0 50%;
     box-sizing: border-box;
-     margin: 0; /* important */
-    padding: 0; 
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -252,26 +266,20 @@
 }
 
 .coffee-panel {
-      flex: 1 1 315px;
-  max-height: 480px; /* Set your desired max-height */
+    display: flex;                /* to keep your vertical layout inside */
+  flex-direction: column;
+  height: 100%;                 /* fill the grid row’s full height */
   background-color: #e0e5e3;
   border-radius: 12px;
   overflow: hidden;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .coffee-panel__image-container {
     position: relative;
     height: 220px;
-    /* shows half of a 320px-high image */
     overflow: hidden;
     background-color: #D6DBDA;
-    /* backdrop behind the image */
 }
 
 .coffee-panel__image {
@@ -279,7 +287,6 @@
     top: 50%;
     left: 50%;
     width: 320px;
-    /* height: 234px;           */
     transform: translate(-50%, -50%);
 }
 
@@ -305,7 +312,6 @@
     color: #0A0A09;
 }
 
-/* Base: hide the button */
 .coffee-panel__view-btn {
     display: block;
     width: 100%;
@@ -317,20 +323,15 @@
     border-radius: 30px;
     font-size: 0.8rem;
     cursor: pointer;
-
-    /* hidden initially */
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.2s ease, transform 0.5s ease;
     pointer-events: none;
-    /* not clickable while hidden */
 }
 
-/* On hover of the panel, show it */
+
 .coffee-panel:hover .coffee-panel__view-btn {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-
-    /* now clickable */
 }
