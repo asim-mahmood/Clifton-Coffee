@@ -50,20 +50,20 @@ width: 100%;
   text-align: center;
 }
 
-.virtual-tour__title {
+.subscription__title {
   font: 400 70px 'Barlow-Regular', sans-serif;
   color: #F5F5F5;
   margin-bottom: 0;
 }
 
-.virtual-tour__text {
+.subscription__text {
   font: 400 18px 'Barlow-Regular', sans-serif;
   line-height: 1.8;
   color: #F5F5F5;
   margin-bottom: 1rem;
 }
 
-.virtual-tour__button {
+.subscription__button {
   font: 400 14px 'Barlow-Regular', sans-serif;
   padding: 0.6rem 1.5rem;
   border: 1px solid #F5F5F5;
@@ -74,7 +74,7 @@ width: 100%;
   transition: background 0.8s ease;
 }
 
-.virtual-tour__button:hover {
+.subscription__button:hover {
   background-color: #0A0A09;
   color: var(--base-color);
 }
@@ -94,7 +94,7 @@ width: 100%;
     padding: 1.5rem;
   }
 
-  .virtual-tour__title {
+  .subscription__title {
     font-size: 2.5rem;
   }
 }
