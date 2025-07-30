@@ -49,7 +49,7 @@ document.addEventListener('keydown', e => {
 });
 
 
-//New Product Section
+//our collection Section
 
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.querySelector('.carousel-track');
@@ -178,12 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1) Initialization function for a single carousel
   function initSingleViewCarousel(carousel) {
-    const track   = carousel.querySelector('.svc-track');
-    const slides  = Array.from(track.children);
+    const track = carousel.querySelector('.svc-track');
+    const slides = Array.from(track.children);
     const prevBtn = carousel.querySelector('.svc-prev');
     const nextBtn = carousel.querySelector('.svc-next');
     const visible = 3;  // how many slides should show at once
-    const gap     = parseFloat(getComputedStyle(track).gap) || 0;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
 
     let allSlides, slideWidth, index;
 
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         c.classList.add('clone');
         return c;
       });
-      const append  = real.slice(0, visible).map(s => {
+      const append = real.slice(0, visible).map(s => {
         const c = s.cloneNode(true);
         c.classList.add('clone');
         return c;
@@ -214,14 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- measure slide width + update transform ---
     function calcSlideWidth() {
       // use the *first real* slide for width
-      const firstReal = track.querySelector('.clone') 
-        ? track.querySelectorAll('.svc-slide:not(.clone)')[0] 
+      const firstReal = track.querySelector('.clone')
+        ? track.querySelectorAll('.svc-slide:not(.clone)')[0]
         : slides[0];
       slideWidth = firstReal.offsetWidth + gap;
     }
     function update(animate = true) {
       track.style.transition = animate ? 'transform 0.4s ease' : 'none';
-      track.style.transform  = `translateX(${-index * slideWidth}px)`;
+      track.style.transform = `translateX(${-index * slideWidth}px)`;
     }
 
     // --- wraparound logic on transition end ---
@@ -317,52 +317,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 (function () {
   const items = document.querySelectorAll('.textCarousel-item');
-  const dots  = document.querySelectorAll('.indicator-dot');
-  const imgs  = document.querySelectorAll('.display-img');
+  const dots = document.querySelectorAll('.indicator-dot');
+  const imgs = document.querySelectorAll('.display-img');
   const wrapper = document.getElementById('textCarousel');
   let active = 0;
 
   function setActive(index) {
     // teardown old
     items[active].classList.remove('active');
-    dots [active].classList.remove('active');
-    imgs [active].classList.remove('active');
+    dots[active].classList.remove('active');
+    imgs[active].classList.remove('active');
     // set new
     active = index;
     items[active].classList.add('active');
-    dots [active].classList.add('active');
-    imgs [active].classList.add('active');
+    dots[active].classList.add('active');
+    imgs[active].classList.add('active');
   }
 
   // click handlers
   items.forEach((item, i) => item.addEventListener('click', () => setActive(i)));
-  dots .forEach((dot,  i) => dot .addEventListener('click', () => {
+  dots.forEach((dot, i) => dot.addEventListener('click', () => {
     wrapper.scrollTo({ top: items[i].offsetTop, behavior: 'smooth' });
     setActive(i);
   }));
 
   // SCROLL handler using offsetTop
   wrapper.addEventListener('scroll', () => {
-  const scrollY    = wrapper.scrollTop;
-  const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
-  let   closestIndex = 0;
-  let   minDiff      = Infinity;
+    const scrollY = wrapper.scrollTop;
+    const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+    let closestIndex = 0;
+    let minDiff = Infinity;
 
-  // If we’re at (or within 2px of) the bottom, just pick the last item
-  if (maxScroll - scrollY <= 2) {
-    closestIndex = items.length - 1;
-  } else {
-    items.forEach((item, i) => {
-      const diff = Math.abs(item.offsetTop - scrollY);
-      if (diff < minDiff) {
-        minDiff      = diff;
-        closestIndex = i;
-      }
-    });
-  }
+    // If we’re at (or within 2px of) the bottom, just pick the last item
+    if (maxScroll - scrollY <= 2) {
+      closestIndex = items.length - 1;
+    } else {
+      items.forEach((item, i) => {
+        const diff = Math.abs(item.offsetTop - scrollY);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIndex = i;
+        }
+      });
+    }
 
-  if (closestIndex !== active) setActive(closestIndex);
-});
+    if (closestIndex !== active) setActive(closestIndex);
+  });
 
 
   // kick things off
@@ -370,4 +370,84 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
-//newproducta
+//favourit 
+(function () {
+  const carousel = document.getElementById('favorites-carousel');
+  const track = carousel.querySelector('.carousel-track');
+  const slides = Array.from(track.children);
+  const btnPrev = carousel.querySelector('.carousel-button.left');
+  const btnNext = carousel.querySelector('.carousel-button.right');
+  const dotsNav = carousel.querySelector('.carousel-dots');
+  const slidesToShow = 4;
+  let currentIndex = 0;
+
+  // Generate one dot per "page"
+  const pageCount = slides.length - slidesToShow + 1;
+  for (let i = 0; i < pageCount; i++) {
+    const dot = document.createElement('button');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsNav.appendChild(dot);
+  }
+  const dots = Array.from(dotsNav.children);
+
+  function goToSlide(index) {
+    const maxIndex = slides.length - slidesToShow;
+    currentIndex = Math.min(Math.max(index, 0), maxIndex);
+    const slideWidth = slides[0].getBoundingClientRect().width +
+      parseFloat(getComputedStyle(slides[0]).paddingLeft) +
+      parseFloat(getComputedStyle(slides[0]).paddingRight);
+    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    updateControls();
+  }
+
+  btnPrev.addEventListener('click', () => goToSlide(currentIndex - 1));
+  btnNext.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+  function updateControls() {
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+  }
+
+  // Initialize
+  goToSlide(0);
+})();
+function initCarouselDots(carouselId, itemSelector, dotContainerSelector, itemsPerPage = 1) {
+  const container = document.querySelector(carouselId);
+  const track = container.querySelector(itemSelector);
+  const slides = track.children;
+  const dotNav = container.querySelector(dotContainerSelector);
+  const total = Math.ceil(slides.length / itemsPerPage);
+  let activeIndex = 0;
+
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.addEventListener('click', () => {
+      track.scrollTo({
+        left: track.offsetWidth * i,
+        behavior: 'smooth'
+      });
+      updateDots(i);
+    });
+    dotNav.appendChild(dot);
+  }
+
+  function updateDots(index) {
+    [...dotNav.children].forEach(dot => dot.classList.remove('active'));
+    dotNav.children[index].classList.add('active');
+  }
+
+  track.addEventListener('scroll', () => {
+    const index = Math.round(track.scrollLeft / track.offsetWidth);
+    if (index !== activeIndex) {
+      activeIndex = index;
+      updateDots(index);
+    }
+  });
+
+  updateDots(0);
+}
+
+// Initialize both carousels
+initCarouselDots('#scroll-carousel', '.scroll-carousel-track', '.scroll-carousel-dots', 1);
+initCarouselDots('#image-carousel', '.image-carousel-track', '.image-carousel-dots', 1);
+
