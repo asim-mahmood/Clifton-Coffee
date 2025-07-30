@@ -1,0 +1,94 @@
+
+#scroll-carousel {
+    width: 100%;
+    background-color: #F6F8F2;
+}
+
+.ratings {
+    padding: 3rem;
+}
+
+.ratings h2 {
+    font: 400 70px 'Barlow-Regular', sans-serif;
+}
+
+
+.scroll-carousel-track {
+  display: flex;
+  align-items: stretch;        
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+
+.scroll-slide {
+  min-width: 33.333%;
+  box-sizing: border-box;
+  padding: 1rem;
+  scroll-snap-align: start;
+  display: flex;                 
+  flex-direction: column;         
+}
+
+.testimonial-card {
+  background-color: #C4C4C2;
+  border: 1px solid #EAEBE4;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  border-radius: 2px;
+  box-sizing: border-box;
+  flex: 1;                     
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  overflow: auto;
+}
+
+.testimonial-card .stars {
+    color: #000;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.testimonial-card .title {
+    font: 500 15px 'Barlow-Regular', sans-serif;
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    color: #0A0A09;
+}
+
+.testimonial-card .message {
+    font: 400 17px 'Barlow-Regular', sans-serif;
+    line-height: 1.5;
+    color: #0A0A09;
+    margin: 0 0 1rem 0;
+}
+
+.testimonial-card .author {
+    font: 600 14px 'Barlow-Regular', sans-serif;
+    font-size: 0.75rem;
+    color: #0A0A09;
+}
+
+.scroll-carousel-dots {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.scroll-carousel-dots button {
+    background: #aaa;
+    border: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.scroll-carousel-dots button.active {
+    background: #000;
+}

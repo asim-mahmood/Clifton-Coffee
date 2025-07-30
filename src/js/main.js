@@ -390,15 +390,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const dots = Array.from(dotsNav.children);
 
-  function goToSlide(index) {
-    const maxIndex = slides.length - slidesToShow;
-    currentIndex = Math.min(Math.max(index, 0), maxIndex);
-    const slideWidth = slides[0].getBoundingClientRect().width +
-      parseFloat(getComputedStyle(slides[0]).paddingLeft) +
-      parseFloat(getComputedStyle(slides[0]).paddingRight);
-    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-    updateControls();
+ function goToSlide(index) {
+  const maxIndex = slides.length - slidesToShow;
+
+  // Wrap index for infinite loop
+  if (index > maxIndex) {
+    currentIndex = 0; // restart
+  } else if (index < 0) {
+    currentIndex = maxIndex; // go to last full set
+  } else {
+    currentIndex = index;
   }
+
+  const slide = slides[0];
+  const slideStyles = getComputedStyle(slide);
+  const slideWidth = slide.getBoundingClientRect().width +
+    parseFloat(slideStyles.marginLeft) +
+    parseFloat(slideStyles.marginRight);
+
+  // Translate carousel
+  const offset = slideWidth * currentIndex;
+  track.style.transform = `translateX(-${offset}px)`;
+
+  updateControls();
+}
+
 
   btnPrev.addEventListener('click', () => goToSlide(currentIndex - 1));
   btnNext.addEventListener('click', () => goToSlide(currentIndex + 1));
@@ -411,6 +427,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize
   goToSlide(0);
 })();
+
+
+
 function initCarouselDots(carouselId, itemSelector, dotContainerSelector, itemsPerPage = 1) {
   const container = document.querySelector(carouselId);
   const track = container.querySelector(itemSelector);

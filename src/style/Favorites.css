@@ -1,15 +1,25 @@
  #favorites-carousel {
      width: 100%;
-    padding: 3rem;
-    background-color: #F6F8F2;
-    overflow: hidden;
+     padding: 3rem;
+     background-color: #F6F8F2;
+     overflow: visible;
+     /* 🔥 allow arrows to appear outside */
+     position: relative;
+     box-sizing: border-box;
+ }
+
+ #favorites-carousel .carousel-slide {
+     width: 260px;
+     flex: 0 0 auto;
+     padding: 0 0.5rem;
+     text-align: center;
      box-sizing: border-box;
  }
 
  #favorites-carousel h2 {
      text-align: center;
-     margin: 2rem 0;
-     font-size: 2rem;
+     margin: 3rem 0;
+     font: 400 70px 'Barlow-Regular', sans-serif;
  }
 
  #favorites-carousel .carousel-container {
@@ -17,35 +27,46 @@
      width: 100%;
      margin: 0 auto;
      overflow: hidden;
+     /* hide scroll */
+     padding: 0 2rem;
+     /* leave space for arrows */
+     box-sizing: border-box;
  }
 
  #favorites-carousel .carousel-track {
      display: flex;
+     gap: 7rem;
+     justify-content: center;
      transition: transform 0.5s ease;
      will-change: transform;
      padding: 0 1rem;
+     box-sizing: content-box;
  }
 
  #favorites-carousel .carousel-slide {
-     flex: 0 0 25%;
-     /* four slides per view */
+     width: 260px;
+     flex: 0 0 auto;
      padding: 0 0.5rem;
      text-align: center;
+
  }
 
  #favorites-carousel .carousel-slide img {
      width: 100%;
      border-radius: 8px;
      display: block;
+     height: 276px;
  }
 
  #favorites-carousel .carousel-slide h3 {
      margin: 0.5rem 0 0.25rem;
+     font: 400 28px 'Barlow-Regular', sans-serif;
+     color: #000000;
  }
 
  #favorites-carousel .carousel-slide .price {
-     font-size: 1rem;
-     color: #555;
+     font: 400 16px 'Barlow-Regular', sans-serif;
+     color: #0A0A09;
  }
 
  #favorites-carousel .carousel-slide .stars {
@@ -54,7 +75,7 @@
 
  #favorites-carousel .carousel-slide .stars span {
      color: #553;
-     font-size: 1rem;
+     font-size: 24px;
  }
 
  /* Arrows */
@@ -62,22 +83,22 @@
      position: absolute;
      top: 50%;
      transform: translateY(-50%);
-     background: rgba(0, 0, 0, 0.6);
-     color: #fff;
+     background: #0A0A09;
+     color: #DBDBDB;
      border: none;
-     padding: 0.5rem;
-     font-size: 1.5rem;
+     font-size: 1rem;
      cursor: pointer;
      border-radius: 50%;
      z-index: 10;
  }
 
  #favorites-carousel .carousel-button.left {
-     left: -10px;
+     left: 27px;
+
  }
 
  #favorites-carousel .carousel-button.right {
-     right: -10px;
+     right: 27px;
  }
 
  /* Dots */
@@ -98,56 +119,4 @@
 
  #favorites-carousel .carousel-dots button.active {
      background: #333;
- }
-/* Arrows — now pushed outside the container */
-#favorites-carousel .carousel-button.left {
-    left: -1rem; /* or adjust as needed */
-}
-
-#favorites-carousel .carousel-button.right {
-    right: -1rem; /* or adjust as needed */
-}
- .scroll-slide,
- .image-slide {
-     min-width: 33.333%;
-     box-sizing: border-box;
-     padding: 1rem;
-     text-align: center;
- }
-
- .scroll-carousel-track,
- .image-carousel-track {
-     display: flex;
-     overflow-x: auto;
-     scroll-snap-type: x mandatory;
-     -webkit-overflow-scrolling: touch;
-     scroll-behavior: smooth;
- }
-
- .scroll-slide,
- .image-slide {
-     scroll-snap-align: start;
- }
-
- /* Dots */
- .scroll-carousel-dots,
- .image-carousel-dots {
-     text-align: center;
-     margin-top: 1rem;
- }
-
- .scroll-carousel-dots button,
- .image-carousel-dots button {
-     background: #aaa;
-     border: none;
-     width: 10px;
-     height: 10px;
-     border-radius: 50%;
-     margin: 0 4px;
-     cursor: pointer;
- }
-
- .scroll-carousel-dots button.active,
- .image-carousel-dots button.active {
-     background: #000;
  }

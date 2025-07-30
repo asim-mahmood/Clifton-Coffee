@@ -16,6 +16,8 @@
 @import "./virtualTour.css";
 @import "./subscriptions.css";
 @import "./favorites.css";
+@import "./reviews.css";
+@import "./follow.css";
 
 
 body{
