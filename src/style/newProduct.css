@@ -252,14 +252,17 @@
 }
 
 .coffee-panel {
-    width: 315px;
-    background-color: #e0e5e3;
-    border-radius: 12px;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin: 10px auto;
+      flex: 1 1 315px;
+  max-height: 480px; /* Set your desired max-height */
+  background-color: #e0e5e3;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .coffee-panel__image-container {

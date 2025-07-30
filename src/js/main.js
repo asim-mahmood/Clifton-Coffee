@@ -318,33 +318,101 @@ tabButtons.forEach(btn => {
 
 //text scroll section 
 
+// (function () {
+//   const items = document.querySelectorAll('.textCarousel-item');
+//   const dots = document.querySelectorAll('.indicator-dot');
+//   const imgs = document.querySelectorAll('.display-img');
+//   const titleEl = document.querySelector('.img-title');
+//   const wrapper = document.getElementById('textCarousel');
+//   let active = 0;
+//   const titles = ['Clifton Capsules', 'Clifton Tea', 'Clifton Chai', 'Clifton Hot Chocolate', 'Clifton Coffee'];
+
+//   function setActive(index) {
+//     items[active].classList.remove('active');
+//     dots[active].classList.remove('active');
+//     imgs[active].classList.remove('active');
+//     active = index;
+//     items[active].classList.add('active');
+//     dots[active].classList.add('active');
+//     imgs[active].classList.add('active');
+//     // titleEl.textContent = titles[active];
+//   }
+
+//   items.forEach((item, i) => item.addEventListener('click', () => setActive(i)));
+//   dots.forEach((dot, i) => dot.addEventListener('click', () => setActive(i)));
+//   // wrapper.addEventListener('scroll', () => {
+//   //   const idx = Array.from(items).findIndex(item => item.getBoundingClientRect().top >= wrapper.getBoundingClientRect().top - 10);
+//   //   if (idx !== -1 && idx !== active) setActive(idx);
+//   // });
+//   wrapper.addEventListener('scroll', () => {
+//   const wrapperTop = wrapper.getBoundingClientRect().top;
+//   let closestIndex = 0;
+//   let minDiff = Infinity;
+
+//   items.forEach((item, i) => {
+//     const diff = Math.abs(item.getBoundingClientRect().top - wrapperTop);
+//     if (diff < minDiff) {
+//       minDiff = diff;
+//       closestIndex = i;
+//     }
+//   });
+
+//   if (closestIndex !== active) setActive(closestIndex);
+// });
+
+//   // Initialize
+//   setActive(0);
+// })();
 (function () {
   const items = document.querySelectorAll('.textCarousel-item');
-  const dots = document.querySelectorAll('.indicator-dot');
-  const imgs = document.querySelectorAll('.display-img');
-  const titleEl = document.querySelector('.img-title');
+  const dots  = document.querySelectorAll('.indicator-dot');
+  const imgs  = document.querySelectorAll('.display-img');
   const wrapper = document.getElementById('textCarousel');
   let active = 0;
-  const titles = ['Clifton Capsules', 'Clifton Tea', 'Clifton Chai', 'Clifton Hot Chocolate', 'Clifton Coffee'];
 
   function setActive(index) {
+    // teardown old
     items[active].classList.remove('active');
-    dots[active].classList.remove('active');
-    imgs[active].classList.remove('active');
+    dots [active].classList.remove('active');
+    imgs [active].classList.remove('active');
+    // set new
     active = index;
     items[active].classList.add('active');
-    dots[active].classList.add('active');
-    imgs[active].classList.add('active');
-    // titleEl.textContent = titles[active];
+    dots [active].classList.add('active');
+    imgs [active].classList.add('active');
   }
 
+  // click handlers
   items.forEach((item, i) => item.addEventListener('click', () => setActive(i)));
-  dots.forEach((dot, i) => dot.addEventListener('click', () => setActive(i)));
-  wrapper.addEventListener('scroll', () => {
-    const idx = Array.from(items).findIndex(item => item.getBoundingClientRect().top >= wrapper.getBoundingClientRect().top - 10);
-    if (idx !== -1 && idx !== active) setActive(idx);
-  });
+  dots .forEach((dot,  i) => dot .addEventListener('click', () => {
+    wrapper.scrollTo({ top: items[i].offsetTop, behavior: 'smooth' });
+    setActive(i);
+  }));
 
-  // Initialize
+  // SCROLL handler using offsetTop
+  wrapper.addEventListener('scroll', () => {
+  const scrollY    = wrapper.scrollTop;
+  const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+  let   closestIndex = 0;
+  let   minDiff      = Infinity;
+
+  // If we’re at (or within 2px of) the bottom, just pick the last item
+  if (maxScroll - scrollY <= 2) {
+    closestIndex = items.length - 1;
+  } else {
+    items.forEach((item, i) => {
+      const diff = Math.abs(item.offsetTop - scrollY);
+      if (diff < minDiff) {
+        minDiff      = diff;
+        closestIndex = i;
+      }
+    });
+  }
+
+  if (closestIndex !== active) setActive(closestIndex);
+});
+
+
+  // kick things off
   setActive(0);
 })();
