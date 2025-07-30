@@ -1,0 +1,70 @@
+.newsletter {
+ 
+      background-color: #E0E1DA;
+      width: 100%;
+    }
+.newsletter-section {
+      max-width: 1440px;            /* content stays centered */
+      margin: 0 auto;
+     padding: 6rem 3rem;
+     text-align: center;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+    }
+
+
+    .newsletter-section h2 {
+      font: 400 70px 'Barlow-Regular', sans-serif;
+      margin-bottom: 16px;
+      color: #0A0A09;
+    }
+
+    .newsletter-section p {
+      font: 400 18px 'Barlow-Regular', sans-serif;
+      color: #0A0A09;
+      margin-bottom: 40px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      width: 523px;
+      max-width: 90%;
+      border: 1px solid #0A0A09;
+      border-radius: 999px;
+      overflow: hidden;
+      background-color: transparent;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 16px 20px;
+      border: none;
+      font-size: 16px;
+      outline: none;
+      background-color: transparent;
+    }
+
+    .newsletter-form button {
+      background-color: #0a0a09;
+      color: white;
+      border: none;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 0 999px 999px 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #333;
+    }
+
+    .newsletter-form button .fa-arrow-right {
+      width: 31px;
+     
+      color: #808080;
+    }

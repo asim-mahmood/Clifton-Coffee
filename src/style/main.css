@@ -12,9 +12,11 @@
 @import "./newProduct.css";
 @import "./shopCoffee.css";
 @import "./verticalScroll.css";
+@import "./newsLetter.css";
+
+
 body{
-    /* max-width: 1440px; */
-     font-family: 'Barlow-Light', sans-serif; 
+  font-family: 'Barlow-Light', sans-serif; 
     
 }
 * {
@@ -23,7 +25,7 @@ body{
 }
 svg {
   fill: #fff;
-  /* stroke: #fff; */
+
 }
 html, body {
   height: 100%;
@@ -36,5 +38,4 @@ main {
   align-items: center;
   justify-content: center;
     position: relative;
-    
 }
