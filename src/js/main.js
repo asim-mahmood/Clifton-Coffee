@@ -2,7 +2,7 @@ import './utils.js';
 import './events.js';
 import './dom.js';
 
-    // grab the elements
+    // Search Overlay
     const openBtn  = document.getElementById('openSearch');
     const closeBtn = document.getElementById('closeSearch');
     const overlay  = document.getElementById('searchOverlay');
@@ -23,6 +23,8 @@ import './dom.js';
       if (e.key === 'Escape') overlay.classList.remove('active');
     });
 
+
+    // Cart Sidebar
      const cartOpenBtn   = document.getElementById('openCart');
     const cartCloseBtn  = document.getElementById('closeCart');
     const cartOverlay   = document.getElementById('cartOverlay');
@@ -41,7 +43,7 @@ import './dom.js';
     cartCloseBtn.addEventListener('click', closeCart);
     cartOverlay.addEventListener('click', closeCart);
 
-    // Optional: close on ESC
+    // carousel 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeCart();
     });
@@ -115,7 +117,7 @@ import './dom.js';
       }
     });
 
-
+//New Product Section
 const tabButtons = document.querySelectorAll('.tab-button');
 const tabContents = document.querySelectorAll('.tab-content');
 tabButtons.forEach(btn => {
@@ -127,7 +129,7 @@ tabButtons.forEach(btn => {
   });
 });
 
-// JS
+// new product carousel
 (function() {
   const carousel = document.querySelector('.single-view-carousel');
   const track    = carousel.querySelector('.svc-track');
@@ -206,7 +208,7 @@ tabButtons.forEach(btn => {
 
 
 
-
+//text scroll section 
 
  (function() {
       const items = document.querySelectorAll('.textCarousel-item');

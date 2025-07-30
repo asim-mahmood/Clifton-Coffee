@@ -1,37 +1,41 @@
  .croursal-grid {
      display: grid;
      grid-template-columns: 1fr 1fr;
-     gap: 30px;
-     padding: 3rem 7rem 3rem 3rem;
+     gap: 94px;
+     padding: 3rem 7rem 0rem 3rem;
     margin: 0 auto;
     position: relative;
+    background-color: #E0E1DA;
+    height: 750px;
     
  }
 
  /* Text carousel container */
  .textCarousel-wrapper {
-     position: relative;
-     height: 500px;
+    position: relative;
+     height: 750px;
      overflow-y: auto;
      scroll-snap-type: y mandatory;
-     padding: 30px 60px 30px 30px;
-     background: #fff;
-     border-radius: 12px;
-     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
      -ms-overflow-style: none;
      scrollbar-width: none;
- }
+      /* -webkit-mask-image: linear-gradient(to top, transparent 0px, black 0px, black 90%, transparent 100%);
+    mask-image: linear-gradient(to top, transparent 0px, black 600px, black 90%, transparent 100%); */
+    -webkit-mask-image: linear-gradient(to top, transparent 0px, black 100px, black 100%);
+mask-image: linear-gradient(to top, transparent 0px, black 400px, black 100%);
 
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+ }
+ 
  .textCarousel-wrapper::-webkit-scrollbar {
      display: none;
  }
 
  .textCarousel-item {
      scroll-snap-align: start;
-     padding-bottom: 30px;
+     padding-bottom: 100px;
      border-bottom: 1px solid #e0e0e0;
-     margin-bottom: 30px;
-     transition: transform 0.3s;
+     transition: transform 0.6s;
  }
 
  .textCarousel-item.active {
@@ -39,39 +43,50 @@
  }
 
  .textCarousel-item h3 {
-     font-size: 1.8rem;
-     color: #2c3e50;
-     margin-bottom: 8px;
+    font: 400 70px 'Barlow-Regular', sans-serif;
+     color: #0A0A09;
+     letter-spacing: 1px;
+     margin-bottom: 12px;
+     /* line-height: 18px; */
+     text-transform: uppercase;
  }
 
  .textCarousel-item h4 {
-     font-size: 1rem;
-     color: #ff6b6b;
+     font: 400 70px 'Barlow-Regular', sans-serif;
+     color: #0A0A09;
      letter-spacing: 1px;
      margin-bottom: 12px;
+     /* line-height: 18px; */
      text-transform: uppercase;
  }
 
  .textCarousel-item p {
-     line-height: 1.6;
-     color: #555;
+     font: 400 17px 'Barlow-Regular', sans-serif;
+     color: #0A0A09;
+     line-height: 21px;
      margin-bottom: 16px;
+     display: -webkit-box;
+    -webkit-line-clamp: 3;       
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
  }
 
  .read-more {
      display: inline-block;
-     margin-top: 12px;
+     margin-top: 20px;
      padding: 8px 16px;
-     background: #ff6b6b;
-     color: #fff;
+     border: 1px solid #0A0A09;
+     color: #0A0A09;
      border-radius: 20px;
      text-decoration: none;
-     font-weight: 600;
+     font: 400 14px 'Barlow-Regular', sans-serif;
      transition: background 0.3s;
  }
 
  .read-more:hover {
-     background: #e85d5d;
+     background: #0A0A09;
+     color: var(--base-color);
  }
 
  /* Gradient hints */
@@ -123,7 +138,7 @@
  /* Image display container */
  .image-display {
      position: relative;
-     height: 500px;
+     height: 600px;
      background: #fff;
      border-radius: 12px;
      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
