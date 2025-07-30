@@ -1,0 +1,100 @@
+
+.subscriptions-brazil-tour {
+width: 100%;
+  background-color: #F6F8F2;
+}
+.subscriptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 3rem;
+}
+.subscription-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.61);
+  z-index: 2;
+}
+.subscription-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 434px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subscription-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.subscription-content {
+  position: relative;
+  z-index: 3;
+
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.virtual-tour__title {
+  font: 400 70px 'Barlow-Regular', sans-serif;
+  color: #F5F5F5;
+  margin-bottom: 0;
+}
+
+.virtual-tour__text {
+  font: 400 18px 'Barlow-Regular', sans-serif;
+  line-height: 1.8;
+  color: #F5F5F5;
+  margin-bottom: 1rem;
+}
+
+.virtual-tour__button {
+  font: 400 14px 'Barlow-Regular', sans-serif;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid #F5F5F5;
+  background: transparent;
+  color: #F5F5F5;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.8s ease;
+}
+
+.virtual-tour__button:hover {
+  background-color: #0A0A09;
+  color: var(--base-color);
+}
+
+/* Responsive (stack columns on mobile) */
+@media (max-width: 768px) {
+  .subscriptions {
+    grid-template-columns: 1fr;
+  }
+
+  .subscription-box {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .subscription-content {
+    padding: 1.5rem;
+  }
+
+  .virtual-tour__title {
+    font-size: 2.5rem;
+  }
+}
