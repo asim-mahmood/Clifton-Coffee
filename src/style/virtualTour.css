@@ -52,6 +52,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 100%;
+  cursor: pointer;
 }
 
 .virtual-tour__image img {

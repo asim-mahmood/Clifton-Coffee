@@ -56,6 +56,7 @@
      border-radius: 8px;
      display: block;
      height: 276px;
+     cursor: pointer;
  }
 
  #favorites-carousel .carousel-slide h3 {
@@ -74,7 +75,7 @@
  }
 
  #favorites-carousel .carousel-slide .stars span {
-     color: #553;
+     color: #0A0A09;
      font-size: 24px;
  }
 
@@ -83,13 +84,14 @@
      position: absolute;
      top: 50%;
      transform: translateY(-50%);
-     background: #0A0A09;
-     color: #DBDBDB;
+     background: black;
+     color: white;
      border: none;
-     font-size: 1rem;
-     cursor: pointer;
+     width: 40px;
+     height: 40px;
      border-radius: 50%;
-     z-index: 10;
+     cursor: pointer;
+     z-index: 3;
  }
 
  #favorites-carousel .carousel-button.left {
@@ -101,22 +103,20 @@
      right: 27px;
  }
 
- /* Dots */
  #favorites-carousel .carousel-dots {
      text-align: center;
-     margin: 1rem 0;
+     margin-top: 2rem;
  }
 
  #favorites-carousel .carousel-dots button {
-     border: none;
-     background: #ccc;
-     width: 12px;
-     height: 12px;
+     border: 1px solid #0A0A09;
+     width: 15px;
+     height: 15px;
      border-radius: 50%;
      margin: 0 4px;
      cursor: pointer;
  }
 
  #favorites-carousel .carousel-dots button.active {
-     background: #333;
+     background: #0A0A09;
  }
