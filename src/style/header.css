@@ -84,9 +84,12 @@
   width: 100vw;
   border-radius: 0;
 }
-.has-dropdown:hover .dropdown {
-  display: flex;
+.has-dropdown.open .dropdown {
+  display: block;
 }
+/* .has-dropdown:hover .dropdown {
+  display: flex;
+} */
 .has-dropdown .dropdown li {
   margin: 0;
 }

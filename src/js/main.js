@@ -1,6 +1,36 @@
 import './utils.js';
 import './events.js';
 import './dom.js';
+document.addEventListener('DOMContentLoaded', () => {
+  // grab all the toggle links
+  const toggleLinks = document.querySelectorAll('.has-dropdown > a');
+
+  toggleLinks.forEach(link => {
+    const parentLi = link.parentElement;  // .has-dropdown
+
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // close any other open dropdowns
+      document
+        .querySelectorAll('.has-dropdown.open')
+        .forEach(openLi => {
+          if (openLi !== parentLi) openLi.classList.remove('open');
+        });
+
+      // toggle this one
+      parentLi.classList.toggle('open');
+    });
+  });
+
+  // click elsewhere closes all
+  document.addEventListener('click', () => {
+    document
+      .querySelectorAll('.has-dropdown.open')
+      .forEach(openLi => openLi.classList.remove('open'));
+  });
+});
 
 // Search Overlay
 const openBtn = document.getElementById('openSearch');

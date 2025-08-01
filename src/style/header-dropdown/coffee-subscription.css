@@ -16,10 +16,10 @@
 .has-dropdown:hover .wide-dropdown {
   display: flex;
 }
-.wide-dropdown{
+/* .wide-dropdown{
   border-top: 2px solid #0A0A09;
   margin-top: 2rem;
-}
+} */
 /* Columns */
 .dropdown-columns {
   display: flex;
